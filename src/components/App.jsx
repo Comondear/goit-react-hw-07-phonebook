@@ -1,11 +1,12 @@
-import React from "react";
-import { Form } from "./Form/Form";
-import { ContactsList } from './ContactsList/ContactsList'
-import { Filter } from "./Filter/Filter";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "redux/operations";
+import React from 'react';
+import { Form } from './Form/Form';
+import { ContactsList } from './ContactsList/ContactsList';
+import { Filter } from './Filter/Filter';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError, selectContacts } from 'redux/selectors';
+import css from './GlobalStyles.module.css';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,13 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={css.main}>
       <h1>Phonebook</h1>
       <Form />
       <h2>Contacts</h2>
       <Filter />
       {contacts.length > 0 && <ContactsList />}
       {isLoading && !error && <b>Request in progress...</b>}
-    </>
-  )
-}
-
+    </div>
+  );
+};
